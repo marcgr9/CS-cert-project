@@ -4,6 +4,7 @@ class Mancare {
 		image(hrana, this.pos.x, this.pos.y);
 	}
 	update() {
+		sunet.play()
 		this.pos = createVector(random(width), random(height));
 	}
 }

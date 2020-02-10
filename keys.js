@@ -1,5 +1,4 @@
 function keyPressed() {
-	if (!start) start = true;
 	if (keyCode === UP_ARROW) {
 		dir[0].set(0, -1);
 	} else if (keyCode === DOWN_ARROW) {

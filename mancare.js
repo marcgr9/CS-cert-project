@@ -5,6 +5,8 @@ class Mancare {
 	}
 	update() {
 		sunet.play()
+					mancaree = imgMancare[floor(random(0,1.9))]
+
 		this.pos = createVector(random(width), random(height));
 	}
 }

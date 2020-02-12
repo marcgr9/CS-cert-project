@@ -38,6 +38,7 @@ class Bila {
 			case 1:
 				if (vel[0] <= 0 || scor[0] >= scorPentruVictorie.value()) {
 					// noLoop();
+					sunetScary.loop()
 					text(jucator1.value() + " A CASTIGAT", width/2, height/2);
 					text("APASA R PENTRU A JUCA DIN NOU", width/2, height/4);
 					gata = true;
@@ -48,6 +49,7 @@ class Bila {
 				case 2:
 					if (vel[1] <= 0 || scor[1] >= scorPentruVictorie.value()) {
 						// noLoop();
+						sunetScary.loop()
 						text(jucator2.value() + " A CASTIGAT", width/2, height/2);
 						text("APASA R PENTRU A JUCA DIN NOU", width/2, height/4);
 						gata = true;

@@ -15,8 +15,6 @@ function keyPressed() {
 		dir[1].set(-1, 0);
 	} else if (keyCode === 68) {
 		dir[1].set(1, 0);
-	} else if (keyCode === 82) {
-		location.reload();
 	} else if (keyCode === 81) {
 		if (scor[1] > 0) {
 			if (!gata) {
@@ -24,6 +22,7 @@ function keyPressed() {
 					telep[1] = !telep[1];
 					console.log("NR2--" + --scor[1]);
 					setTimeout(function() {
+						sunetTeleport.play()
 						B2.r -= 5;
 						B2.pos.x = random(width);
 						B2.pos.y = random(height);
@@ -39,6 +38,7 @@ function keyPressed() {
 					telep[0] = !telep[0];
 					console.log("NR--" + --scor[0]);
 					setTimeout(function() {
+						sunetTeleport.play()
 						B.r -= 5;
 						B.pos.x = random(width);
 						B.pos.y = random(height);

@@ -1,4 +1,4 @@
-var imgMancare;
+var imgMancare = [];
 var scorPentruVictorie;
 var scor = [0, 0];
 var vel = [2, 2];
@@ -12,12 +12,16 @@ var castigator;
 var inceput = 0
 var g_height = 720
 var g_width = 1080
-var sunet
+var sunet, sunetTeleport, sunetScary
+var mancaree
 
 function preload() {
-  imgMancare = loadImage('ext/files/rsz_mancare.png');
-  imgMancare.resize(10, 10);
+  imgMancare.push(loadImage('ext/files/rsz_mancare.png'));
+    imgMancare.push(loadImage('ext/files/mancare2.png'));
+	mancaree = imgMancare[0]
   sunet = loadSound('ext/files/mancat.mp3')
+  sunetScary = loadSound('ext/files/scarySound.mp3')
+  sunetTeleport = loadSound('ext/files/teleportat.mp3')
   dir = [createVector(0, 0), createVector(0, 0)];
 }
 
@@ -56,7 +60,7 @@ function draw() {
   if (start) {
 	background(71);
 	if (!gata) {
-		mancare.arata(imgMancare);
+		mancare.arata(mancaree);
 		B.mancat(mancare); B2.mancat(mancare);
 	} else {
 		if (dist(B.pos.x, B.pos.y, B2.pos.x, B2.pos.y) <= 50)

@@ -1,4 +1,99 @@
-class Bila {
+// jucator.js
+
+
+class Jucator {
+	constructor(tip) {
+		this.tip = tip
+		this.r = RADIUS
+		this.pos = createVector(random(720), random(720))
+		this.dir = createVector(0, 0)
+		this.vel = INITIAL_VEL
+		this.scor = 0
+		this.teleporting = false
+		this.img = pImgs[tip]
+		this.img.resize(this.r, this.r)
+	}
+	
+	show() {
+		imageMode(CENTER)
+		image(this.img, this.pos.x, this.pos.y)
+		this.move()
+	}
+	
+	move() {
+		this.pos.x += this.vel * this.dir.x
+		this.pos.y += this.vel * this.dir.y
+		if (this.pos.x < 0 || this.pos.x > width) this.pos.x = abs(this.pos.x-width)
+		if (this.pos.y < 0 || this.pos.y > height) this.pos.y = abs(this.pos.y-height)
+		
+		if (this.ate()) {
+			sunete[1].play()
+			this.scor += game.mancare.points[game.mancare.index]
+			this.vel -= 0.1
+			this.r += 3
+			this.img.resize(this.r, this.r)
+			game.mancare.update()
+		}
+		
+	}
+	
+	setDir(x, y) {
+		this.dir = createVector(x, y)
+	}
+	
+	ate() {
+		return dist(this.pos.x, this.pos.y, game.mancare.pos.x, game.mancare.pos.y) < this.r / 2
+	}
+	
+	teleport() {
+		if (!this.teleporting) {
+			let that = this
+			this.teleporting = true
+			setTimeout(function() {
+				sunete[0].play()
+				that.pos = createVector(random(720), random(720))
+				that.r -= 3
+				that.vel += 0.1
+				this.img.resize(this.r, this.r)
+				that.teleporting = false
+			}, 1000)
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*class Bila {
 	construct(tip) {
 		this.r = 32;
     this.tip = tip;
@@ -81,3 +176,4 @@ function tp(B) {
 
 var B = new Bila();
 var B2 = new Bila();
+*/

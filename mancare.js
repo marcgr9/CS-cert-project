@@ -1,14 +1,20 @@
-class Mancare {
-	arata(hrana) {
-    imageMode(CENTER);
-		image(hrana, this.pos.x, this.pos.y);
-	}
-	update() {
-		sunet.play()
-					mancaree = imgMancare[floor(random(0,1.9))]
+// mancare.js
 
-		this.pos = createVector(random(width), random(height));
+class Mancare {
+	constructor() {
+		this.pos = createVector(random(width), random(height))
+		this.index = 0
+		this.imgs = images
+		this.points = points
+	}
+	
+	update() {
+		this.pos = createVector(random(width), random(height))
+		this.index = Math.floor(Math.random() * this.imgs.length)
+	}
+	
+	show() {
+		imageMode(CENTER)
+		image(this.imgs[this.index], this.pos.x, this.pos.y)
 	}
 }
-
-var mancare = new Mancare();

@@ -1,9 +1,12 @@
 let RADIUS = 35
 let INITIAL_VEL = 2
 let pImgs
-let game
+let game, dom
 let images, points
 let sunete
+let WIDTH = 720
+let HEIGHT = 720
+let context
 
 function preload() {
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
@@ -13,17 +16,15 @@ function preload() {
 	
 	sunete = [loadSound('ext/files/teleportat.mp3'), loadSound('ext/files/mancat.mp3')]
 	points = [1, 2]
+	let canvas = noCanvas()
+
 }
 
 function setup() {
-	let jucator1 = new Jucator(0)
-	let jucator2 = new Jucator(1)
-	let mancare = new Mancare()
-	game = new Game(jucator1, jucator2, mancare)
-	createCanvas(720, 720)
+	game = new Game()
+	dom = new Dom()
 }
 
 function draw() {
-	background(71)
 	game.play()
 }

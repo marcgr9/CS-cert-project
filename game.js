@@ -48,8 +48,10 @@ class Game {
 				self.losers.push(i)
 			}
 		}
+		console.log(self.losers)
 
 		self.mancare.remove()
+
 		self.players[self.winner].vel = 7
 		self.players[self.winner].setSize(100, 100)
 

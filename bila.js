@@ -1,5 +1,6 @@
 // jucator.js
 
+
 class Jucator {
 	constructor(tip, name) {
 		this.tip = tip

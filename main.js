@@ -1,76 +1,63 @@
-var imgMancare = [];
-var scorPentruVictorie;
-var scor = [0, 0];
-var vel = [2, 2];
-var dir;
-var culori = [];
-var telep = [false, false];
-var gata = false;
-var start = false;
-var mancat = [false, false];
-var castigator;
-var inceput = 0
-var g_height = 720
-var g_width = 1080
-var sunet, sunetTeleport, sunetScary
-var mancaree
+let RADIUS = 35
+let INITIAL_VEL = 2
+let VEL_OFFSET = 0.1
+let RADIUS_OFFSET = 3
+let scoreToWin = 5
+let pImgs = []
+let game, dom
+let images = [], points = []
+let sunete = []
+let WIDTH = 720
+let HEIGHT = 720
+let names = []
+
+let keys = []
+
+const players = 2
+
+const defaultNames = ["Jucator1", "Jucator2"]
+const title = "Jocul lui marc"
+const startGame = "Start joc"
+const restartGame = "Joaca din nou"
+const scoreText = "Scorul lui "
+const won = " a castigat!"
+const untill = " pana la "
+
+const states = {
+	NOT_STARTED: "not_started",
+	PLAYING: "playing",
+	ENDED: "ended"
+}
+
+const actions = {
+	UP: "up",
+	DOWN: "down",
+	LEFT: "left",
+	RIGHT: "right",
+	TELEPORT: "tp"
+}
 
 function preload() {
-  imgMancare.push(loadImage('ext/files/rsz_mancare.png'));
-    imgMancare.push(loadImage('ext/files/mancare2.png'));
-	mancaree = imgMancare[0]
-  sunet = loadSound('ext/files/mancat.mp3')
-  sunetScary = loadSound('ext/files/scarySound.mp3')
-  sunetTeleport = loadSound('ext/files/teleportat.mp3')
-  dir = [createVector(0, 0), createVector(0, 0)];
+	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
+	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
+
+	pImgs.forEach(pic => {
+		pic.resize(RADIUS, RADIUS)
+	})
+
+
+	sunete = [loadSound('ext/files/teleportat.mp3'), loadSound('ext/files/mancat.mp3')]
+	points = [1, 2]
 }
 
 function setup() {
-	greeting = createElement('h2', 'Bile v mere');
-	greeting.position(20, 5);
-	
-	jucator1 = createInput()
-	jucator2 = createInput()
-	jucator1.position(20, 50);
-	jucator2.position(20, 50 + 50);
-	
-	scorPentruVictorie = createSlider(1, 20, 120);
-	button = createButton('incepe');
-	button.mousePressed(startJoc)
-	button.position(20, 50 + 50 + 50)
-	
-	culori = [color(244, 188, 66), color(66, 244, 75)];
-	B.construct(1); B2.construct(2);
-	mancare.update();
-}
+	dom = new Dom()
+	game = new Game()
 
-function startJoc() {
-	if (jucator1.value().length > 2 && jucator2.value().length > 2) {
-		start = true;
-		createCanvas(g_width, g_height)
-		button.remove()
-		scorPentruVictorie.remove()
-		jucator1.remove()
-		jucator2.remove()
-		greeting.remove()
-	}
+	initKeys()
+	dom.createMainScreen()
 }
 
 function draw() {
-  if (start) {
-	background(71);
-	if (!gata) {
-		mancare.arata(mancaree);
-		B.mancat(mancare); B2.mancat(mancare);
-	} else {
-		if (dist(B.pos.x, B.pos.y, B2.pos.x, B2.pos.y) <= 50)
-		  max(scor[0], scor[1]) == scor[0] ? mancat[1] = true : mancat[0] = true;
-	}
-	
-	B.misca(); B2.misca();
-	B.arata(); B2.arata();
-	B.afara(); B2.afara();
-	B.gata(); B2.gata();
-	if (!gata) arataTxt();
-  }
+	game.play()
 }

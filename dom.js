@@ -6,7 +6,6 @@ class Dom {
 	}
 
 	initCanvas() {
-		// removing unused dom elements
 		names[0] = select('#p1').value()
 		names[1] = select('#p2').value()
 
@@ -33,7 +32,7 @@ class Dom {
 	}
 
 	createEndScreen() {
-		createButton('Restart game')
+		createButton(restartGame)
 			.position(WIDTH + 50, 50)
 			.id('reset')
 			.size(100, 100)
@@ -47,7 +46,7 @@ class Dom {
 	}
 
 	createTitle() {
-		createSpan('Titlu')
+		createSpan(title)
 			.id('title')
 			.position(20, 20)
 			.style('font-weight', 'bold')
@@ -57,15 +56,15 @@ class Dom {
 	createInputs() {
 		createInput()
 			.id('p1')
-			.value('Jucator1')
+			.value(defaultNames[0])
 			.position(20, 60)
 
 		createInput()
 			.id('p2')
-			.value('Jucator2')
+			.value(defaultNames[1])
 			.position(20, 80)
 
-		createButton('startJoc')
+		createButton(startGame)
 			.id('startJoc')
 			.mousePressed(() => {
 				game.start()
@@ -73,5 +72,8 @@ class Dom {
 			.position(200, 70)
 	}
 
-
+	displayScores() {
+		select('#p1').html(scoreText + names[0] + ": " + game.players[0].scor + " / " + scoreToWin)
+		select('#p2').html(scoreText + names[1] + ": " + game.players[1].scor + " / " + scoreToWin)
+	}
 }

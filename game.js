@@ -15,8 +15,7 @@ class Game {
 		if (self.state == states.PLAYING) {
 			background(71)
 
-			select('#p1').html("Scorul lui " + names[0] + ": " + self.players[0].scor + " / " + scoreToWin)
-			select('#p2').html("Scorul lui " + names[1] + ": " + self.players[1].scor + " / " + scoreToWin)
+			dom.displayScores()
 
 			self.mancare.show()
 			self.players.forEach(
@@ -30,10 +29,9 @@ class Game {
 			self.players.forEach((player, index) => {
 				player.show()
 				if (index == self.winner) {
-					self.losers.forEach((loser, _index) => {
+					self.losers.forEach(loser => {
 						player.eat(self.players[loser])
 					})
-
 				}
 			})
 		}
@@ -48,10 +46,8 @@ class Game {
 				self.losers.push(i)
 			}
 		}
-		console.log(self.losers)
 
 		self.mancare.remove()
-
 		self.players[self.winner].vel = 7
 		self.players[self.winner].setSize(100, 100)
 
@@ -68,13 +64,13 @@ class Game {
 	}
 
 	arataTextVictorie() {
-	  push();
+	  push()
 		textAlign(CENTER)
-	  textSize(64);
-	  textStyle(BOLD);
-	  noStroke();
-	  fill(155, 66, 244, 75);
-	  text(self.players[self.winner].name + " a castigat!", width/2, height/6);
-	  pop();
+	  textSize(64)
+	  textStyle(BOLD)
+	  noStroke()
+	  fill(155, 66, 244, 75)
+	  text(self.players[self.winner].name + " a castigat!", width/2, height/6)
+	  pop()
 	}
 }

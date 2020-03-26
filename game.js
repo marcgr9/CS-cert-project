@@ -70,7 +70,7 @@ class Game {
 	  textStyle(BOLD)
 	  noStroke()
 	  fill(155, 66, 244, 75)
-	  text(self.players[self.winner].name + " a castigat!", width/2, height/6)
+	  text(self.players[self.winner].name + won, width/2, height/6)
 	  pop()
 	}
 }

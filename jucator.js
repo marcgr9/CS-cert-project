@@ -39,26 +39,28 @@ class Jucator {
 				game.end(this.tip)
 			} else {
 				let multiplier = (game.mancare.index + 1)
-				this.vel -= 0.1 * multiplier
-				this.setSize(this.r + 3 * multiplier)
+				this.vel -= VEL_OFFSET * multiplier
+				this.setSize(this.r + RADIUS_OFFSET * multiplier)
 				game.mancare.update()
 			}
 		}
 	}
 
 	remove() {
-		this.playerIndex = game.players.indexOf(this)
+		// this.playerIndex = game.players.indexOf(this)
 
-		if (game.winner > this.playerIndex) {
+		// console.log(game.players.indexOf(this) == this.tip)
+
+		if (game.winner > this.tip) {
 			game.winner--
 		}
 
-		keys.splice(game.players.indexOf(this), 1)
-		game.losers.splice(game.players.indexOf(this), 1)
-		game.players.splice(game.players.indexOf(this), 1)
+		keys.splice(this.tip, 1)
+		game.losers.splice(this.tip, 1)
+		game.players.splice(this.tip, 1)
 
 		delete this
-		delete this.playerIndex
+		// delete this.playerIndex
 	}
 
 	eat(loser) {
@@ -108,8 +110,8 @@ class Jucator {
 				setTimeout(function() {
 					sunete[0].play()
 					that.pos = createVector(random(WIDTH), random(HEIGHT))
-					that.vel += 0.1
-					that.setSize(that.r - 3)
+					that.vel += VEL_OFFSET
+					that.setSize(that.r - RADIUS_OFFSET)
 					that.teleporting = false
 				}, 1000)
 			}

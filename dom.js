@@ -8,10 +8,12 @@ class Dom {
 	initCanvas() {
 		names[0] = select('#p1').value()
 		names[1] = select('#p2').value()
+		scoreToWin = select('#slider').value()
 
 		select('#title').remove()
 		select('#p1').remove()
 		select('#p2').remove()
+		select('#slider').remove()
 		select('#startJoc').remove()
 
 		createSpan('')
@@ -64,7 +66,17 @@ class Dom {
 			.value(defaultNames[1])
 			.position(20, 80)
 
-		createButton(startGame)
+			// TODO: cauta o solutie mai eleganta fara p5
+
+		createSlider(1, 10, 5, 1)
+			.id('slider')
+			.position(20, 120)
+			.input(() => {
+				scoreToWin = select('#slider').value()
+				select('#startJoc').html(startGame + untill + scoreToWin)
+			})
+
+		createButton(startGame + untill + 5)
 			.id('startJoc')
 			.mousePressed(() => {
 				game.start()

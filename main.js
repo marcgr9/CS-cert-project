@@ -1,6 +1,8 @@
 let RADIUS = 35
 let INITIAL_VEL = 2
-let scoreToWin = 3
+let VEL_OFFSET = 0.1
+let RADIUS_OFFSET = 3
+let scoreToWin = 5
 let pImgs = []
 let game, dom
 let images = [], points = []
@@ -18,6 +20,8 @@ const title = "Jocul lui marc"
 const startGame = "Start joc"
 const restartGame = "Joaca din nou"
 const scoreText = "Scorul lui "
+const won = " a castigat!"
+const untill = " pana la "
 
 const states = {
 	NOT_STARTED: "not_started",

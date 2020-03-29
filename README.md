@@ -1,5 +1,5 @@
 # Joc atestat Marc Gruita, LITP 2020
-Joaca-te [aici](www.gruita.ro) ultima versiune
+Joaca-te ![aici](www.gruita.ro) ultima versiune
 
 Castigi daca esti primul jucator care ajunge la scorul maxim ales la inceput.
 

@@ -1,6 +1,5 @@
 // game.js
 
-let self
 
 class Game {
 	constructor() {
@@ -8,59 +7,59 @@ class Game {
 		this.playing = false
 		this.state = states.NOT_STARTED
 		this.players = []
-		self = this
 	}
 
 	play() {
-		if (self.state == states.PLAYING) {
+		if (this.state == states.PLAYING) {
 			background(71)
 
 			dom.displayScores()
 
-			self.mancare.show()
-			self.players.forEach(
-				player => player.show()
-			)
-		} else if (self.state == states.ENDED) {
-			background(71)
-			this.arataTextVictorie()
-
-			// console.log(self.winner, self.losers)
-			self.players.forEach((player, index) => {
+			this.mancare.show()
+			this.players.forEach(player =>
 				player.show()
-				if (index == self.winner) {
-					self.losers.forEach(loser => {
-						player.eat(self.players[loser])
+			)
+		} else if (this.state == states.ENDED) {
+			background(71)
+			this.players[this.winner].show()
+
+			this.players.forEach((player, index) => {
+				if (index == this.winner) {
+					this.losers.forEach(loser => {
+						player.eat(this.players[loser])
 					})
+				} else {
+					player.show()
 				}
 			})
+			this.arataTextVictorie()
 		}
 	}
 
 	end(winnerId) {
-		self.winner = winnerId
+		this.winner = winnerId
 		console.log(winnerId)
-		self.losers = []
-		for (let i = 0; i < self.players.length; i++) {
+		this.losers = []
+		for (let i = 0; i < playersCount; i++) {
 			if (i != winnerId) {
-				self.losers.push(i)
+				this.losers.push(i)
 			}
 		}
 
-		self.mancare.remove()
-		self.players[self.winner].vel = 7
-		self.players[self.winner].setSize(100, 100)
+		this.mancare.remove()
+		this.players[this.winner].vel = 7
+		this.players[this.winner].setSize(100, 100)
 
-		self.state = states.ENDED
+		this.state = states.ENDED
 
-		dom.createEndScreen()
+		dom.initEndScreen()
 	}
 
 	start() {
-		dom.initCanvas()
-		self.players = [new Jucator(0, names[0]), new Jucator(1, names[1])]
-
-		self.state = states.PLAYING
+		dom.initInGameScreen()
+		this.players = [new Jucator(0, names[0]), new Jucator(1, names[1])]
+		console.log(this.players.length)
+		this.state = states.PLAYING
 	}
 
 	arataTextVictorie() {
@@ -70,7 +69,7 @@ class Game {
 	  textStyle(BOLD)
 	  noStroke()
 	  fill(155, 66, 244, 75)
-	  text(self.players[self.winner].name + won, width/2, height/6)
+	  text(this.players[this.winner].name + won, width/2, height/6)
 	  pop()
 	}
 }

@@ -1,19 +1,20 @@
-let RADIUS = 35
-let INITIAL_VEL = 2
-let VEL_OFFSET = 0.1
-let RADIUS_OFFSET = 3
-let scoreToWin = 5
-let pImgs = []
+const RADIUS = 35
+const INITIAL_VEL = 2
+const VEL_OFFSET = 0.1
+const RADIUS_OFFSET = 3
+const MIN_SCORE = 1, MAX_SCORE = 20
+const DEFAULT_SCORE = 5
+const WIDTH = 720, HEIGHT = 720
+
 let game, dom
+let scoreToWin
+let pImgs = []
 let images = [], points = []
 let sunete = []
-let WIDTH = 720
-let HEIGHT = 720
 let names = []
-
 let keys = []
 
-const players = 2
+const playersCount = 2
 
 const defaultNames = ["Jucator1", "Jucator2"]
 const title = "Jocul lui marc"
@@ -21,7 +22,7 @@ const startGame = "Start joc"
 const restartGame = "Joaca din nou"
 const scoreText = "Scorul lui "
 const won = " a castigat!"
-const untill = " pana la "
+const until = " pana la "
 
 const states = {
 	NOT_STARTED: "not_started",
@@ -37,6 +38,10 @@ const actions = {
 	TELEPORT: "tp"
 }
 
+const errors = {
+	PLAYERS_MISMATCH: "Number of players does not match"
+}
+
 function preload() {
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
 	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
@@ -45,19 +50,25 @@ function preload() {
 		pic.resize(RADIUS, RADIUS)
 	})
 
-
 	sunete = [loadSound('ext/files/teleportat.mp3'), loadSound('ext/files/mancat.mp3')]
 	points = [1, 2]
 }
 
 function setup() {
 	dom = new Dom()
-	game = new Game()
-
 	initKeys()
-	dom.createMainScreen()
-}
 
-function draw() {
-	game.play()
+	if (playersCount != pImgs.length || playersCount != keys.length || playersCount != defaultNames.length) {
+		dom.displayError("PLAYERS_MISMATCH")
+		noLoop()
+		return
+	}
+
+	scoreToWin = DEFAULT_SCORE
+	game = new Game()
+	dom.initMainScreen()
+
+	draw = function() {
+		game.play()
+	}
 }

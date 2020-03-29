@@ -2,7 +2,7 @@ const RADIUS = 35
 const INITIAL_VEL = 2
 const VEL_OFFSET = 0.1
 const RADIUS_OFFSET = 3
-const MIN_SCORE = 1, MAX_SCORE = 20
+const MIN_SCORE = 1, MAX_SCORE = 10
 const DEFAULT_SCORE = 5
 const WIDTH = 720, HEIGHT = 720
 
@@ -39,7 +39,8 @@ const actions = {
 }
 
 const errors = {
-	PLAYERS_MISMATCH: "Number of players does not match"
+	PLAYERS_MISMATCH: "Number of players does not match",
+	BAD_INPUT: "Numele jucatorilor nu sunt valide"
 }
 
 function preload() {

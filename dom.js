@@ -45,6 +45,12 @@ class Dom {
 			.mousePressed(() => {
 				game.start()
 			})
+
+		createSpan('')
+			.id('error')
+			.addClass('start')
+			.position(200, 110)
+			.style('color', '#ff0000')
 	}
 
 	initInGameScreen() {
@@ -53,6 +59,15 @@ class Dom {
 		selectAll('.name').forEach((element, index) => {
 			names[index] = element.value()
 		});
+		let ok = true
+		names.forEach(name => {
+			if (name.length < 3 || name.length > 16) {
+				this.updateErrorField(errors.BAD_INPUT)
+				ok = false
+			}
+		})
+
+		if (!ok) return
 
 		selectAll('.start').forEach(element => {
 			element.remove()
@@ -92,6 +107,11 @@ class Dom {
 		selectAll('.inGame').forEach((element, index) => {
 			element.html(scoreText + names[index] + ": " + game.players[index].scor + " / " + scoreToWin)
 		})
+	}
+
+	updateErrorField(error) {
+		select('#error')
+			.html(error)
 	}
 
 	displayError(errorCode) {

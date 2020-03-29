@@ -32,11 +32,12 @@ class Jucator {
 		if (this.pos.x < 0 || this.pos.x > width) this.pos.x = abs(this.pos.x-width)
 		if (this.pos.y < 0 || this.pos.y > height) this.pos.y = abs(this.pos.y-height)
 
-		if (this.ate()) {
+		if (game.state == states.PLAYING && this.ate()) {
 			sunete[1].play()
 			this.scor += game.mancare.points[game.mancare.index]
 			if (this.scor >= scoreToWin) {
 				game.end(this.tip)
+				console.log("A castigat jucatorul " + this.tip)
 			} else {
 				let multiplier = (game.mancare.index + 1)
 				this.vel -= VEL_OFFSET * multiplier

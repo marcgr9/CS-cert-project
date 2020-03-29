@@ -19,6 +19,6 @@ class Mancare {
 	}
 
 	remove() {
-		this.pos = createVector(-10, -10)
+		delete this
 	}
 }

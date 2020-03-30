@@ -1,3 +1,6 @@
+const v = '1.1'
+const snapshot = '20w14a'
+
 const RADIUS = 35
 const INITIAL_VEL = 2
 const VEL_OFFSET = 0.1

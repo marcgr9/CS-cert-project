@@ -43,6 +43,10 @@ class Dom {
 			.addClass('start')
 			.position(200, 70)
 			.mousePressed(() => {
+				if (isSafari()) {
+ 					new Audio('').play()
+					console.log("safari detectat")
+				}
 				game.start()
 			})
 

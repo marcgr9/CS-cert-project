@@ -46,12 +46,12 @@ const errors = {
 function preload() {
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
 	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
+	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3')]
 
 	pImgs.forEach(pic => {
 		pic.resize(RADIUS, RADIUS)
 	})
 
-	sunete = [loadSound('ext/files/teleportat.mp3'), loadSound('ext/files/mancat.mp3')]
 	points = [1, 2]
 }
 

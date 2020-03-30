@@ -58,7 +58,7 @@ class Game {
 	start() {
 		dom.initInGameScreen()
 		this.players = [new Jucator(0, names[0]), new Jucator(1, names[1])]
-		console.log(this.players.length)
+		console.table(this.players)
 		this.state = states.PLAYING
 	}
 

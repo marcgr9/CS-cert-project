@@ -23,16 +23,26 @@ class Dom {
 				.id("name" + i)
 				.addClass('name')
 				.addClass('start')
-				.position(20, 60 + 20 * i)
-				.value(defaultNames[i])
+				.addClass('form-control')
+				.size(150, 40)
+				.attribute('placeholder', `Nume jucator ${i+1}`)
+				.position(20, 80 + 50 * i)
+				//.value(defaultNames[i])
 		}
 
 			// TODO: cauta o solutie mai eleganta
 
+		createP(scoreSelectorText)
+			.id('scoreSelectorText')
+			.addClass('start')
+			.position(20, 180)
+			.style('font-size', '150%')
+
 		createSlider(MIN_SCORE, MAX_SCORE, DEFAULT_SCORE, 1)
 			.id('slider')
 			.addClass('start')
-			.position(20, 120)
+			.addClass('form-control-range')
+			.position(90, 195)
 			.input(() => {
 				scoreToWin = select('#slider').value()
 				select('#startJoc').html(startGame + until + scoreToWin)
@@ -41,7 +51,8 @@ class Dom {
 		createButton(startGame + until + scoreToWin)
 			.id('startJoc')
 			.addClass('start')
-			.position(200, 70)
+			.addClass('btn btn-primary')
+			.position(200, 100)
 			.mousePressed(() => {
 				if (isSafari()) {
  					new Audio('').play()
@@ -53,7 +64,7 @@ class Dom {
 		createSpan('')
 			.id('error')
 			.addClass('start')
-			.position(200, 110)
+			.position(200, 150)
 			.style('color', '#ff0000')
 	}
 
@@ -84,11 +95,13 @@ class Dom {
 		})
 
 		for (let i = 0; i < playersCount; i++) {
-			createSpan('')
+
+			createDiv()
 				.id("score" + i)
 				.addClass('inGame')
 				.addClass('scores')
-				.position(WIDTH + 60, 100 + 40 * i)
+				.addClass('alert alert-info')
+				.position(WIDTH + 30, 100 + 60 * i)
 		}
 
 		resizeCanvas(WIDTH, HEIGHT)
@@ -99,8 +112,8 @@ class Dom {
 		createButton(restartGame)
 			.id('reset')
 			.addClass('end')
+			.addClass('btn btn-success')
 			.position(WIDTH + 50, 50)
-			.size(100, 100)
 			.mousePressed(() => {
 				selectAll('.end').forEach(element => {
 					element.remove()

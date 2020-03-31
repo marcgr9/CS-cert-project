@@ -1,5 +1,5 @@
-const v = '1.1'
-const snapshot = '20w14b'
+const v = '1.2'
+const snapshot = '20w14c'
 
 const RADIUS = 35
 const INITIAL_VEL = 2
@@ -26,6 +26,7 @@ const restartGame = "Joaca din nou"
 const scoreText = "Scorul lui "
 const won = " a castigat!"
 const until = " pana la "
+const scoreSelectorText = "Scor: "
 
 const states = {
 	NOT_STARTED: "not_started",

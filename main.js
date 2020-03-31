@@ -1,3 +1,6 @@
+const v = '1.1'
+const snapshot = '20w14b'
+
 const RADIUS = 35
 const INITIAL_VEL = 2
 const VEL_OFFSET = 0.1
@@ -40,18 +43,19 @@ const actions = {
 
 const errors = {
 	PLAYERS_MISMATCH: "Number of players does not match",
-	BAD_INPUT: "Numele jucatorilor nu sunt valide"
+	BAD_INPUT: "Numele jucatorilor nu sunt valide",
+	BAD_BROWSER: "Nu poti accesa jocul de pe mobil :(. <br/> In schimb poti vedea codul proiectului <a href=\"https://github.com/marcgr9/Joc_atestat\">aici</a>"
 }
 
 function preload() {
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
 	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
+	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3')]
 
 	pImgs.forEach(pic => {
 		pic.resize(RADIUS, RADIUS)
 	})
 
-	sunete = [loadSound('ext/files/teleportat.mp3'), loadSound('ext/files/mancat.mp3')]
 	points = [1, 2]
 }
 

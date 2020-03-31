@@ -43,6 +43,10 @@ class Dom {
 			.addClass('start')
 			.position(200, 70)
 			.mousePressed(() => {
+				if (isSafari()) {
+ 					new Audio('').play()
+					console.log("safari detectat")
+				}
 				game.start()
 			})
 
@@ -66,6 +70,12 @@ class Dom {
 				ok = false
 			}
 		})
+
+		if (isMobile()) {
+			this.updateErrorField(errors.BAD_BROWSER)
+			this.showGitHub()
+			ok = false
+		}
 
 		if (!ok) return
 

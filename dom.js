@@ -71,6 +71,12 @@ class Dom {
 			}
 		})
 
+		if (isMobile()) {
+			this.updateErrorField(errors.BAD_BROWSER)
+			this.showGitHub()
+			ok = false
+		}
+
 		if (!ok) return
 
 		selectAll('.start').forEach(element => {

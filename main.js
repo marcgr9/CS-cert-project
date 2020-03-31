@@ -43,7 +43,8 @@ const actions = {
 
 const errors = {
 	PLAYERS_MISMATCH: "Number of players does not match",
-	BAD_INPUT: "Numele jucatorilor nu sunt valide"
+	BAD_INPUT: "Numele jucatorilor nu sunt valide",
+	BAD_BROWSER: "Nu poti accesa jocul de pe mobil :(. <br/> In schimb poti vedea codul proiectului <a href=\"https://github.com/marcgr9/Joc_atestat\">aici</a>"
 }
 
 function preload() {

@@ -1,5 +1,5 @@
 const v = '1.2'
-const snapshot = '20w14c'
+const snapshot = '20w14d'
 
 const RADIUS = 35
 const INITIAL_VEL = 2

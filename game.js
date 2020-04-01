@@ -55,6 +55,7 @@ class Game {
 
 	start() {
 		dom.initInGameScreen()
+		this.players = []
 		for (let i = 0; i < playersCount; i++) {
 			this.players.push(new Jucator(i, names[i]))
 		}

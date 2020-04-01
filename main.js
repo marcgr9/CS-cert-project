@@ -99,7 +99,7 @@ function resizeScreen() {
 		WIDTH = val
 		HEIGHT = val
 
-		if (game.state != game.NOT_STARTED) {
+		if (game.state != states.NOT_STARTED) {
 			resizeCanvas(WIDTH, HEIGHT)
 			dom.resize(game.state)
 			if (game.mancare.pos.x < 0 || game.mancare.pos.x > WIDTH) game.mancare.pos.x = abs(game.mancare.pos.x-WIDTH)

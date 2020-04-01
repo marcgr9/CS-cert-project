@@ -88,7 +88,7 @@ class Dom {
 			ok = false
 		}
 
-		if (!ok) return
+		if (!ok) return false
 
 		selectAll('.start').forEach(element => {
 			element.remove()
@@ -105,6 +105,8 @@ class Dom {
 
 		resizeCanvas(WIDTH, HEIGHT)
 		background(71)
+
+    return true
 	}
 
 	initEndScreen() {

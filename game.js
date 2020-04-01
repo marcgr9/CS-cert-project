@@ -54,13 +54,14 @@ class Game {
 	}
 
 	start() {
-		dom.initInGameScreen()
-		this.players = []
-		for (let i = 0; i < playersCount; i++) {
-			this.players.push(new Jucator(i, names[i]))
+		if (dom.initInGameScreen()) {
+			this.players = []
+			for (let i = 0; i < playersCount; i++) {
+				this.players.push(new Jucator(i, names[i]))
+			}
+			console.table(this.players)
+			this.state = states.PLAYING
 		}
-		console.table(this.players)
-		this.state = states.PLAYING
 	}
 
 	arataTextVictorie() {

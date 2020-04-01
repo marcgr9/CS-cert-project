@@ -4,7 +4,6 @@
 class Game {
 	constructor() {
 		this.mancare = new Mancare()
-		this.playing = false
 		this.state = states.NOT_STARTED
 		this.players = []
 	}
@@ -12,7 +11,6 @@ class Game {
 	play() {
 		if (this.state == states.PLAYING) {
 			background(71)
-
 			dom.displayScores()
 
 			this.mancare.show()
@@ -57,7 +55,9 @@ class Game {
 
 	start() {
 		dom.initInGameScreen()
-		this.players = [new Jucator(0, names[0]), new Jucator(1, names[1])]
+		for (let i = 0; i < playersCount; i++) {
+			this.players.push(new Jucator(i, names[i]))
+		}
 		console.table(this.players)
 		this.state = states.PLAYING
 	}
@@ -65,7 +65,7 @@ class Game {
 	arataTextVictorie() {
 	  push()
 		textAlign(CENTER)
-	  textSize(64)
+	  textSize(WIDTH / 10)
 	  textStyle(BOLD)
 	  noStroke()
 	  fill(155, 66, 244, 75)

@@ -95,13 +95,12 @@ class Dom {
 		})
 
 		for (let i = 0; i < playersCount; i++) {
-
 			createDiv()
 				.id("score" + i)
 				.addClass('inGame')
-				.addClass('scores')
+				.addClass('score')
 				.addClass('alert alert-info')
-				.position(WIDTH + 30, 100 + 60 * i)
+				.position(WIDTH + 30, 100 + 80 * i)
 		}
 
 		resizeCanvas(WIDTH, HEIGHT)
@@ -127,8 +126,8 @@ class Dom {
 	}
 
 	displayScores() {
-		selectAll('.inGame').forEach((element, index) => {
-			element.html(scoreText + names[index] + ": " + game.players[index].scor + " / " + scoreToWin)
+		selectAll('.score').forEach((element, index) => {
+			element.html(`${scoreText}  ${names[index]}: ${game.players[index].scor} / ${scoreToWin}`)
 		})
 	}
 
@@ -145,4 +144,16 @@ class Dom {
 		createP(`A aparut o eroare: ${errorCode}`)
 			.position(20, 60)
 	}
+
+  resize(state) {
+    if (state == states.PLAYING) {
+      selectAll('.score').forEach((element, index) => {
+        console.log(width)
+  			element.position(WIDTH + 30, 100 + 80 * index)
+  		})
+    } else if (state == states.ENDED) {
+      select('#reset')
+        .position(WIDTH + 50, 50)
+    }
+  }
 }

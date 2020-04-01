@@ -7,7 +7,8 @@ const VEL_OFFSET = 0.1
 const RADIUS_OFFSET = 3
 const MIN_SCORE = 1, MAX_SCORE = 10
 const DEFAULT_SCORE = 5
-const WIDTH = 720, HEIGHT = 720
+let WIDTH = 720, HEIGHT = 720
+const MIN_SIZE = 400, MAX_SIZE = 720
 
 let game, dom
 let scoreToWin
@@ -57,6 +58,10 @@ function preload() {
 		pic.resize(RADIUS, RADIUS)
 	})
 
+	window.onresize = function (){
+		resizeScreen()
+	}
+
 	points = [1, 2]
 }
 
@@ -72,9 +77,33 @@ function setup() {
 
 	scoreToWin = DEFAULT_SCORE
 	game = new Game()
+	resizeScreen()
 	dom.initMainScreen()
 
 	draw = function() {
 		game.play()
+	}
+}
+
+function resizeScreen() {
+	let w = window.innerWidth
+	let h = window.innerHeight
+	let offset = 0
+
+	if (game.state != states.ENDED) offset = 200
+	else offset = 300 // width of score or reset button
+
+	let val = min(w - offset, h - 100) // -100 for padding
+
+	if (val >= MIN_SIZE && val <= MAX_SIZE) {
+		WIDTH = val
+		HEIGHT = val
+
+		if (game.state != game.NOT_STARTED) {
+			resizeCanvas(WIDTH, HEIGHT)
+			dom.resize(game.state)
+			if (game.mancare.pos.x < 0 || game.mancare.pos.x > WIDTH) game.mancare.pos.x = abs(game.mancare.pos.x-WIDTH)
+			if (game.mancare.pos.y < 0 || game.mancare.pos.y > HEIGHT) game.mancare.pos.y = abs(game.mancare.pos.y-HEIGHT)
+		}
 	}
 }

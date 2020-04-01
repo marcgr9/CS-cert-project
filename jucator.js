@@ -29,8 +29,8 @@ class Jucator {
 	move() {
 		this.pos.x += this.vel * this.dir.x
 		this.pos.y += this.vel * this.dir.y
-		if (this.pos.x < 0 || this.pos.x > width) this.pos.x = abs(this.pos.x-width)
-		if (this.pos.y < 0 || this.pos.y > height) this.pos.y = abs(this.pos.y-height)
+		if (this.pos.x < 0 || this.pos.x > WIDTH) this.pos.x = abs(this.pos.x-WIDTH)
+		if (this.pos.y < 0 || this.pos.y > HEIGHT) this.pos.y = abs(this.pos.y-HEIGHT)
 
 		if (game.state == states.PLAYING && this.ate()) {
 			sunete[1].play()

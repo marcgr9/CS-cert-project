@@ -102,8 +102,7 @@ function resizeScreen() {
 		if (game.state != states.NOT_STARTED) {
 			resizeCanvas(WIDTH, HEIGHT)
 			dom.resize(game.state)
-			if (game.mancare.pos.x < 0 || game.mancare.pos.x > WIDTH) game.mancare.pos.x = abs(game.mancare.pos.x-WIDTH)
-			if (game.mancare.pos.y < 0 || game.mancare.pos.y > HEIGHT) game.mancare.pos.y = abs(game.mancare.pos.y-HEIGHT)
+			game.mancare = new Mancare()
 		}
 	}
 }

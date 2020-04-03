@@ -54,10 +54,7 @@ class Dom {
 			.addClass('btn btn-primary')
 			.position(200, 100)
 			.mousePressed(() => {
-				if (isSafari()) {
- 					new Audio('').play()
-					console.log("safari detectat")
-				}
+        sunete[2].play()
 				game.start()
 			})
 

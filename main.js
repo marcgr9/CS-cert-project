@@ -10,9 +10,12 @@ let names = []
 let keys = []
 
 function preload() {
+	const AudioContext = window.AudioContext || window.webkitAudioContext;
+	const audioCtx = new AudioContext();
+
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
 	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
-	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3')]
+	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3'), new Audio('ext/files/click.mp3')]
 
 	pImgs.forEach(pic => {
 		pic.resize(RADIUS, RADIUS)

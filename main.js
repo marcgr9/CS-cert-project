@@ -1,5 +1,5 @@
-const v = '1.2'
-const snapshot = '20w14d'
+const v = '1.3'
+const snapshot = '20w14e'
 
 let tableShowing
 let game, dom

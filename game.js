@@ -22,7 +22,6 @@ class Game {
 			)
 		} else if (this.state == states.ENDED) {
 			background(71)
-			this.players[this.winner].show()
 
 			this.players.forEach((player, index) => {
 				if (index == this.winner) {
@@ -33,6 +32,7 @@ class Game {
 					player.show()
 				}
 			})
+			this.players[this.winner].show()
 			this.arataTextVictorie()
 		}
 	}

@@ -1,6 +1,7 @@
-const v = '1.2'
-const snapshot = '20w14d'
+const v = '1.3'
+const snapshot = '20w14e'
 
+let tableShowing
 let game, dom
 let scoreToWin
 let pImgs = []
@@ -31,6 +32,7 @@ function preload() {
 function setup() {
 	dom = new Dom()
 	initKeys()
+	tableShowing = false
 
 	if (playersCount != pImgs.length || playersCount != keys.length || playersCount != defaultNames.length) {
 		dom.displayError("PLAYERS_MISMATCH")

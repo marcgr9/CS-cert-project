@@ -1,15 +1,6 @@
 const v = '1.2'
 const snapshot = '20w14d'
 
-const RADIUS = 35
-const INITIAL_VEL = 2
-const VEL_OFFSET = 0.1
-const RADIUS_OFFSET = 3
-const MIN_SCORE = 1, MAX_SCORE = 10
-const DEFAULT_SCORE = 5
-let WIDTH = 720, HEIGHT = 720
-const MIN_SIZE = 400, MAX_SIZE = 720
-
 let game, dom
 let scoreToWin
 let pImgs = []
@@ -18,41 +9,13 @@ let sunete = []
 let names = []
 let keys = []
 
-const playersCount = 2
-
-const defaultNames = ["Jucator1", "Jucator2"]
-const title = "Jocul lui marc"
-const startGame = "Start joc"
-const restartGame = "Joaca din nou"
-const scoreText = "Scorul lui "
-const won = " a castigat!"
-const until = " pana la "
-const scoreSelectorText = "Scor: "
-
-const states = {
-	NOT_STARTED: "not_started",
-	PLAYING: "playing",
-	ENDED: "ended"
-}
-
-const actions = {
-	UP: "up",
-	DOWN: "down",
-	LEFT: "left",
-	RIGHT: "right",
-	TELEPORT: "tp"
-}
-
-const errors = {
-	PLAYERS_MISMATCH: "Number of players does not match",
-	BAD_INPUT: "Numele jucatorilor nu sunt valide",
-	BAD_BROWSER: "Nu poti accesa jocul de pe mobil :(. <br/> In schimb poti vedea codul proiectului <a href=\"https://github.com/marcgr9/Joc_atestat\">aici</a>"
-}
-
 function preload() {
+	const AudioContext = window.AudioContext || window.webkitAudioContext;
+	const audioCtx = new AudioContext();
+
 	images = [loadImage('/ext/files/mancare.png'), loadImage('/ext/files/mancare2.png')]
 	pImgs = [loadImage('/ext/files/steve.png'), loadImage('/ext/files/alex.png')]
-	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3')]
+	sunete = [new Audio('ext/files/teleportat.mp3'), new Audio('ext/files/mancat.mp3'), new Audio('ext/files/click.mp3')]
 
 	pImgs.forEach(pic => {
 		pic.resize(RADIUS, RADIUS)
@@ -77,7 +40,6 @@ function setup() {
 
 	scoreToWin = DEFAULT_SCORE
 	game = new Game()
-	resizeScreen()
 	dom.initMainScreen()
 
 	draw = function() {
@@ -91,7 +53,7 @@ function resizeScreen() {
 	let offset = 0
 
 	if (game.state != states.ENDED) offset = 200
-	else offset = 300 // width of score or reset button
+	else offset = 300 // width of score alert or reset button
 
 	let val = min(w - offset, h - 100) // -100 for padding
 
@@ -102,7 +64,8 @@ function resizeScreen() {
 		if (game.state != states.NOT_STARTED) {
 			resizeCanvas(WIDTH, HEIGHT)
 			dom.resize(game.state)
-			game.mancare = new Mancare()
+			if (game.mancare.pos.x < 0 || game.mancare.pos.x > WIDTH) game.mancare.pos.x = abs(game.mancare.pos.x-WIDTH)
+			if (game.mancare.pos.y < 0 || game.mancare.pos.y > HEIGHT) game.mancare.pos.y = abs(game.mancare.pos.y-HEIGHT)
 		}
 	}
 }

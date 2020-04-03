@@ -1,8 +1,48 @@
 // utils.js
 
-/** here are defined functionalities used in
+/** here are defined functions & constants used in
  * the global scope of the game
  */
+
+ const RADIUS = 35
+ const INITIAL_VEL = 2
+ const VEL_OFFSET = 0.1
+ const RADIUS_OFFSET = 3
+ const MIN_SCORE = 1, MAX_SCORE = 10
+ const DEFAULT_SCORE = 5
+ let WIDTH = 720, HEIGHT = 720
+ const MIN_SIZE = 400, MAX_SIZE = 720
+
+ const playersCount = 2
+
+ const defaultNames = ["Jucator1", "Jucator2"]
+ const title = "Jocul lui marc"
+ const startGame = "Start joc"
+ const restartGame = "Joaca din nou"
+ const scoreText = "Scorul lui "
+ const won = " a castigat!"
+ const until = " pana la "
+ const scoreSelectorText = "Scor: "
+
+ const states = {
+ 	NOT_STARTED: "not_started",
+ 	PLAYING: "playing",
+ 	ENDED: "ended"
+ }
+
+ const actions = {
+ 	UP: "up",
+ 	DOWN: "down",
+ 	LEFT: "left",
+ 	RIGHT: "right",
+ 	TELEPORT: "tp"
+ }
+
+ const errors = {
+ 	PLAYERS_MISMATCH: "Number of players does not match",
+ 	BAD_INPUT: "Numele jucatorilor nu sunt valide",
+ 	BAD_BROWSER: "Nu poti accesa jocul de pe mobil :(. <br/> In schimb poti vedea codul proiectului <a href=\"https://github.com/marcgr9/Joc_atestat\">aici</a>"
+ }
 
 function isSafari() {
   return window.safari !== undefined;

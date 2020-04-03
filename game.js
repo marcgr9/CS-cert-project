@@ -3,9 +3,12 @@
 
 class Game {
 	constructor() {
-		this.mancare = new Mancare()
 		this.state = states.NOT_STARTED
 		this.players = []
+	}
+
+	initFood() {
+		this.mancare = new Mancare()
 	}
 
 	play() {
@@ -55,6 +58,7 @@ class Game {
 
 	start() {
 		if (dom.initInGameScreen()) {
+			this.initFood()
 			this.players = []
 			for (let i = 0; i < playersCount; i++) {
 				this.players.push(new Jucator(i, names[i]))

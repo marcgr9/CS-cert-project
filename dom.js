@@ -18,6 +18,8 @@ class Dom {
 	}
 
 	initMainScreen() {
+    select('#jumbotron_points').html(`Castiga primul jucator care a ajuns la ${scoreToWin} puncte.`)
+
 		for (let i = 0; i < playersCount; i++) {
 			createInput()
 				.id("name" + i)
@@ -46,6 +48,7 @@ class Dom {
 			.input(() => {
 				scoreToWin = select('#slider').value()
 				select('#startJoc').html(startGame + until + scoreToWin)
+        select('#jumbotron_points').html(`Castiga primul jucator care a ajuns la ${scoreToWin} puncte.`)
 			})
 
 		createButton(startGame + until + scoreToWin)
@@ -63,6 +66,15 @@ class Dom {
 			.addClass('start')
 			.position(200, 150)
 			.style('color', '#ff0000')
+
+    createButton(howToPlay)
+      .id('howToPlay')
+      .addClass('start')
+      .addClass('btn btn-info')
+      .position(20, 240)
+      .mousePressed(() => {
+        this.showTable(!tableShowing)
+      })
 	}
 
 	initInGameScreen() {
@@ -81,12 +93,12 @@ class Dom {
 
 		if (isMobile()) {
 			this.updateErrorField(errors.BAD_BROWSER)
-			this.showGitHub()
 			ok = false
 		}
 
 		if (!ok) return false
 
+    this.showTable(false)
 		selectAll('.start').forEach(element => {
 			element.remove()
 		})
@@ -154,5 +166,12 @@ class Dom {
       select('#reset')
         .position(WIDTH + 50, 50)
     }
+  }
+
+  showTable(bool) {
+    tableShowing = !tableShowing
+    let state = bool?'visible':'hidden'
+    select('#howtoplay')
+      .style('visibility', state)
   }
 }

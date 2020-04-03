@@ -1,11 +1,13 @@
 // keys.js
 
 function keyPressed() {
-	keys.forEach((map, index) => {
-		if (map.has(keyCode)) {
-			game.players[index].action(map.get(keyCode))
-		}
-	})
+	if (game || game.state != states.NOT_STARTED) {
+		keys.forEach((map, index) => {
+			if (map.has(keyCode)) {
+				game.players[index].action(map.get(keyCode))
+			}
+		})
+	}
 }
 
 function initKeys() {

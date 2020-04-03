@@ -23,6 +23,7 @@
  const won = " a castigat!"
  const until = " pana la "
  const scoreSelectorText = "Scor: "
+ const howToPlay = "Cum ma joc?"
 
  const states = {
  	NOT_STARTED: "not_started",

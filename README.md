@@ -1,2 +1,2 @@
-# Joc atestat Marc Gruita, LITP 2020
-Joaca-te [aici](https://www.gruita.ro) ultima versiune
+# Computer Science highschool certification, grade XII
+hosted [here](https://www.gruita.ro)

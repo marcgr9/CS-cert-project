@@ -1,2 +1,2 @@
 # Computer Science highschool certification, grade XII
-hosted [here](https://www.gruita.ro)
+hosted [here](https://marcgr9.pythonanywhere.com/static/minigame/index.html)
